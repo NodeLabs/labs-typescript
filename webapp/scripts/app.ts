@@ -31,13 +31,13 @@ module app {
                     
                     <div class="row">
                         <div class="col s12 m4">
-                            <card src="images/6.jpeg" href="/edit.html">
+                            <card src="images/6.jpeg" href="/edit.html" title="Titre 1">
                                 <p>Voici un exemple de carte</p> 
                             </card>
                         </div>
                         
                         <div class="col s12 m4">
-                            <card src="images/6.jpeg" href="/edit.html">
+                            <card src="images/6.jpeg" href="/edit.html" title="Titre 2">
                                 <p>Voici un exemple de carte 2</p> 
                             </card>
                         </div>

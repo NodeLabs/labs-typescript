@@ -29,12 +29,13 @@ module app.components {
          */
         render(): string {
 
-            const {src, href} = getAttributes(this.element);
+            const {src, href, title} = getAttributes(this.element);
 
             return `
-                <div class="card horizontal">
+                <div class="card">
                     <div class="card-image">
                         <img src="${src}">
+                        <span class="card-title">${title}</span>
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
