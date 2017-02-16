@@ -1,0 +1,27 @@
+{
+  "name": "tp-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "lite-server webapp/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romakita/tp-typescript.git"
+  },
+  "author": "ROMAIN LENZOTTI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Romakita/tp-typescript/issues"
+  },
+  "homepage": "https://github.com/Romakita/tp-typescript#readme",
+  "dependencies": {
+    "@types/jquery": "^2.0.40",
+    "materialize-css": "^0.98.0"
+  },
+  "devDependencies": {
+    "lite-server": "^2.2.2"
+  }
+}
