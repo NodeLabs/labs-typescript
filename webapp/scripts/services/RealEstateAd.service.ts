@@ -1,5 +1,7 @@
 module app.services {
 
+    import memoize = app.decorators.memoize;
+
     export interface IAdd {
         Id: number;
         Titre: string;
@@ -23,15 +25,55 @@ module app.services {
         UrlImagePrincipale: string[];
     }
 
+    export interface IAddRequest {
+        Ville: string;
+        Achat: boolean;
+        Location: boolean;
+        Appartement: boolean;
+        Maison: boolean;
+        Chateau: boolean;
+        PrixMin: number;
+        PrixMax: number;
+        SurfaceMin: number;
+        SurfaceMax: number;
+    }
+
     export class RealEstateAdService {
 
-        getAll(): Promise<IAdd[]> {
+        /**
+         *
+         * @param options
+         * @returns {Promise<TResult>|Promise<T>|PromiseLike<TResult>|Promise<TResult2|TResult1>}
+         */
+        @memoize(o => o.Ville)
+        getAll(options?: IAddRequest): Promise<IAdd[]> {
 
-            return fetch("api/serviceannoncesimmobilieres")
+            const parameters = options ? ('?' + this.toParameters(options)) : '';
+
+            return fetch("api/serviceannoncesimmobilieres" + parameters)
                 .then(response => response.json())
 
         }
 
+        /**
+         *
+         * @param options
+         * @returns {string}
+         */
+        toParameters(options?: IAddRequest): string {
+
+            return Object.keys(options).map((key) => {
+
+                let value = options[key];
+
+                if (typeof value === "boolean") {
+                    value = value ? "True" : "False";
+                }
+
+                return `${key}=${value}`;
+            }).join('&');
+
+        }
     }
 
 }

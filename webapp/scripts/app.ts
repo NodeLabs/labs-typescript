@@ -6,12 +6,26 @@ module app {
     import component = app.decorators.component;
     import Component = app.services.Component;
     import ComponentsFactory = app.services.ComponentsFactory;
+    import InputSearchComponent = app.components.InputSearchComponent;
+    import IAddRequest = app.services.IAddRequest;
 
-    @component('app', CardComponent)
+    @component('app', CardComponent, InputSearchComponent)
     class AppComponent extends Component {
 
         private realEstateAdService = new RealEstateAdService();
         private ads: IAdd[] = [];
+        private searchOptions: IAddRequest = {
+            Ville: "",
+            Achat: true,
+            Location: false,
+            Appartement: true,
+            Maison: false,
+            Chateau: false,
+            PrixMin: 0,
+            PrixMax: 10000000,
+            SurfaceMin: 0,
+            SurfaceMax: 500
+        };
 
         /**
          *
@@ -37,11 +51,11 @@ module app {
          */
         private getRealEstateAds() {
 
-            this.realEstateAdService
-                .getAll()
+            return this.realEstateAdService
+                .getAll(this.searchOptions)
                 .then((ads) => {
 
-                    console.log('ADS =>', ads);
+                    console.log('ADS found(s) =>', ads);
                     this.ads = ads;
 
                     this.render();
@@ -55,7 +69,8 @@ module app {
          */
         private getRealEstateAd(id) {
 
-            console.log(id);
+            // console.log(id);
+
         }
 
         /**
@@ -70,7 +85,10 @@ module app {
                         <a href="/" class="brand-logo">
                             <i class="valtech-logo--header glyph" data-icon="valtech-logo" aria-hidden="true"></i>
                         </a>
+                        
+                        <input-search value="${this.searchOptions.Ville}"></input-search>
                     </div>
+                    
                     
                 </nav>
                 
@@ -85,6 +103,35 @@ module app {
                 
             `;
         }
+
+        /**
+         *
+         */
+        afterRender() {
+
+            this.element
+                .find('input-search')
+                .on('changeValue', this.onSearchValueChange);
+
+        }
+
+        /**
+         *
+         * @param event
+         * @param value
+         */
+        private onSearchValueChange = (event, value) => {
+
+            this.searchOptions.Ville = value;
+            this.getRealEstateAds()
+                .then(() => {
+
+                    this.element.find('input-search input').focus();
+
+                });
+
+        };
+
 
         private renderAds() {
 

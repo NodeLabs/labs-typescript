@@ -20,6 +20,7 @@
   "dependencies": {
     "@types/jquery": "^2.0.40",
     "@types/whatwg-fetch": "0.0.33",
+    "lodash": "^4.17.4",
     "materialize-css": "^0.98.0",
     "whatwg-fetch": "^2.0.2"
   },

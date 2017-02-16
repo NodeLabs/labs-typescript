@@ -10,7 +10,8 @@
     ],
     "types": [
       "jquery",
-      "whatwg-fetch"
+      "whatwg-fetch",
+      "lodash"
     ],
     "experimentalDecorators":true,
     "emitDecoratorMetadata": true,

@@ -11,6 +11,17 @@ nav ul.right {
     padding-right:20px;
 }
 
+nav form {
+  float:right;
+}
+nav .input-field {
+    color: rgba(0, 0, 0, 0.7);
+}
+nav .input-field label i {
+    color: rgba(0, 0, 0, 0.7);
+    transition: color .3s;
+}
+
 nav .valtech-logo--header {
     color:#1a1a1a;;
     font-size:1.6rem;
