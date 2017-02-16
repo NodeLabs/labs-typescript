@@ -1,21 +1,48 @@
 
 module app {
     import CardComponent = app.components.CardComponent;
+    import RealEstateAdService = app.services.RealEstateAdService;
+    import IAdd = app.services.IAdd;
+
     class AppComponent {
 
         private element: JQuery;
+        private realEstateAdService = new RealEstateAdService();
+        private ads: IAdd[] = [];
 
         constructor(selector: string = "app") {
 
 
             this.element = jQuery(selector);
-            this.element.html(this.render());
 
-            this.afterRender();
+            this.getRealEstateAds();
 
         }
 
+        /**
+         *
+         */
+        private getRealEstateAds(){
+
+            this.realEstateAdService
+                .getAll()
+                .then((ads) => {
+
+                    this.ads = ads;
+
+                    this.element.html(this.render());
+                    this.afterRender();
+
+                });
+
+        }
+
+        /**
+         *
+         * @returns {string}
+         */
         private render(): string {
+
             return `
                 <nav class="navbar">
                     <div class="nav-wrapper">
@@ -30,22 +57,25 @@ module app {
                     <h2>Liste des annonces</h2>
                     
                     <div class="row">
-                        <div class="col s12 m4">
-                            <card src="images/6.jpeg" href="/edit.html">
-                                <p>Voici un exemple de carte</p> 
-                            </card>
-                        </div>
-                        
-                        <div class="col s12 m4">
-                            <card src="images/6.jpeg" href="/edit.html">
-                                <p>Voici un exemple de carte 2</p> 
-                            </card>
-                        </div>
+                        ${this.renderAds()}
                     </div>
                     
                 </div>
                 
             `;
+        }
+
+        private renderAds() {
+
+            return this.ads.map(ad =>
+                `<div class="col s12 m4">
+                    <card src="${ad.UrlImagePrincipale}" href="/edit.html?id=${ad.Id}" title="${ad.Prix} €">
+                        <p>
+                            ${ad.Titre}
+                        </p>
+                    </card>
+                </div>`
+            ).join('');
         }
 
         private afterRender() {

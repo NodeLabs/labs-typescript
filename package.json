@@ -19,9 +19,13 @@
   "homepage": "https://github.com/Romakita/tp-typescript#readme",
   "dependencies": {
     "@types/jquery": "^2.0.40",
-    "materialize-css": "^0.98.0"
+    "@types/whatwg-fetch": "0.0.33",
+    "materialize-css": "^0.98.0",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
+    "connect-history-api-fallback": "^1.3.0",
+    "http-proxy-middleware": "^0.17.3",
     "lite-server": "^2.2.2"
   }
 }

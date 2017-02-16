@@ -9,7 +9,8 @@
       "es2015.collection"
     ],
     "types": [
-      "jquery"
+      "jquery",
+      "whatwg-fetch"
     ],
     "experimentalDecorators":true,
     "emitDecoratorMetadata": true,
