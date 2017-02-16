@@ -3,45 +3,66 @@ module app {
     import CardComponent = app.components.CardComponent;
     import RealEstateAdService = app.services.RealEstateAdService;
     import IAdd = app.services.IAdd;
+    import component = app.decorators.component;
+    import Component = app.services.Component;
+    import ComponentsFactory = app.services.ComponentsFactory;
 
-    class AppComponent {
+    @component('app', CardComponent)
+    class AppComponent extends Component {
 
-        private element: JQuery;
         private realEstateAdService = new RealEstateAdService();
         private ads: IAdd[] = [];
 
-        constructor(selector: string = "app") {
+        /**
+         *
+         */
+        onInit() {
 
+            const {type} = this.attrs;
 
-            this.element = jQuery(selector);
+            switch(type) {
+                case "edit":
+                    const id = window.location.search.match(/id=([^&]+)/)[1];
+                    this.getRealEstateAd(id);
+                    break;
 
-            this.getRealEstateAds();
-
+                default:
+                    this.getRealEstateAds();
+                    break;
+            }
         }
 
         /**
          *
          */
-        private getRealEstateAds(){
+        private getRealEstateAds() {
 
             this.realEstateAdService
                 .getAll()
                 .then((ads) => {
 
+                    console.log('ADS =>', ads);
                     this.ads = ads;
 
-                    this.element.html(this.render());
-                    this.afterRender();
-
+                    this.render();
                 });
 
         }
 
         /**
          *
+         * @param id
+         */
+        private getRealEstateAd(id) {
+
+            console.log(id);
+        }
+
+        /**
+         *
          * @returns {string}
          */
-        private render(): string {
+        render(): string {
 
             return `
                 <nav class="navbar">
@@ -78,11 +99,7 @@ module app {
             ).join('');
         }
 
-        private afterRender() {
-
-            CardComponent.fromSelector("card");
-        }
     }
 
-    new AppComponent("app");
+    ComponentsFactory.boostrap(AppComponent);
 }

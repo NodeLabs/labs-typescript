@@ -3,25 +3,11 @@ module app.components {
 
     import IComponent = app.interfaces.IComponent;
     import getAttributes = app.utils.getAttributes;
+    import component = app.decorators.component;
+    import Component = app.services.Component;
 
-    export class CardComponent implements IComponent {
-
-        static selectorName: string = "card";
-
-        private _element;
-        private _content: string;
-
-        /**
-         *
-         * @param selector
-         * @param options
-         */
-        private constructor(selector: string | JQuery | Element = CardComponent.selectorName) {
-            this._element = jQuery(selector);
-            this._content = this.element.html();
-
-            this.element.html(this.render());
-        }
+    @component('card')
+    export class CardComponent extends Component {
 
         /**
          *
@@ -29,7 +15,7 @@ module app.components {
          */
         render(): string {
 
-            const {src, href, title} = getAttributes(this.element);
+            const {src, href, title} = this.attrs;
 
             return `
                 <div class="card">
@@ -39,7 +25,7 @@ module app.components {
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
-                            ${this._content}
+                            ${this.originalContent}
                         </div>
                         <div class="card-action">
                             <a href="${href}">Voir annonce</a>
@@ -47,24 +33,6 @@ module app.components {
                     </div>
                 </div>
             `;
-        }
-
-        get element(): JQuery {
-            return this._element;
-        }
-
-        /**
-         *
-         * @param selector
-         */
-        static fromSelector(selector: string = CardComponent.selectorName) {
-
-            const elements = jQuery(selector);
-
-            elements.each((index, element: Element) => {
-                new CardComponent(element);
-            });
-
         }
     }
 

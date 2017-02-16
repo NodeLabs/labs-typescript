@@ -2,9 +2,8 @@
 declare module app.interfaces {
 
     interface IComponent {
-        render(): string;
+        onInit?(): void;
         afterRender?(): void;
-        element: JQuery;
     }
 
 }
