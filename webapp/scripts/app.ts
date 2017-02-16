@@ -69,7 +69,7 @@ module app {
 
             return this.ads.map(ad =>
                 `<div class="col s12 m4">
-                    <card src="${ad.UrlImagePrincipale}" href="/edit.html?id=${ad.Id}" title="${ad.Prix} €">
+                    <card src="${ad.UrlImagePrincipale}" href="edit.html?id=${ad.Id}" title="${ad.Prix} €">
                         <p>
                             ${ad.Titre}
                         </p>
