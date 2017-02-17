@@ -18,18 +18,8 @@ module app {
          */
         onInit() {
 
-            const {type} = this.attrs;
+            this.getRealEstateAds();
 
-            switch(type) {
-                case "edit":
-                    const id = window.location.search.match(/id=([^&]+)/)[1];
-                    this.getRealEstateAd(id);
-                    break;
-
-                default:
-                    this.getRealEstateAds();
-                    break;
-            }
         }
 
         /**
@@ -47,15 +37,6 @@ module app {
                     this.render();
                 });
 
-        }
-
-        /**
-         *
-         * @param id
-         */
-        private getRealEstateAd(id) {
-
-            console.log(id);
         }
 
         /**
