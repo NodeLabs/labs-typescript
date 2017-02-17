@@ -2,18 +2,21 @@
 module app {
     import CardComponent = app.components.CardComponent;
     import RealEstateAdService = app.services.RealEstateAdService;
-    import IAdd = app.services.IAdd;
+    import IAdDetails = app.services.IAdDetails;
     import component = app.decorators.component;
     import Component = app.services.Component;
     import ComponentsFactory = app.services.ComponentsFactory;
     import InputSearchComponent = app.components.InputSearchComponent;
-    import IAddRequest = app.services.IAddRequest;
+    import IAddRequest = app.services.IAdRequest;
+    import AdDetailsComponent = app.components.AdDetailsComponent;
 
-    @component('app', CardComponent, InputSearchComponent)
+    @component('app', CardComponent, InputSearchComponent, AdDetailsComponent)
     class AppComponent extends Component {
 
         private realEstateAdService = new RealEstateAdService();
-        private ads: IAdd[] = [];
+        private ads: IAdDetails[] = [];
+        private currentAdId: string;
+
         private searchOptions: IAddRequest = {
             Ville: "",
             Achat: true,
@@ -36,8 +39,7 @@ module app {
 
             switch(type) {
                 case "edit":
-                    const id = window.location.search.match(/id=([^&]+)/)[1];
-                    this.getRealEstateAd(id);
+                    this.currentAdId = window.location.search.match(/id=([^&]+)/)[1];
                     break;
 
                 default:
@@ -65,16 +67,6 @@ module app {
 
         /**
          *
-         * @param id
-         */
-        private getRealEstateAd(id) {
-
-            // console.log(id);
-
-        }
-
-        /**
-         *
          * @returns {string}
          */
         render(): string {
@@ -93,11 +85,9 @@ module app {
                 </nav>
                 
                 <div class="container">
-                    <h2>Liste des annonces</h2>
                     
-                    <div class="row">
-                        ${this.renderAds()}
-                    </div>
+                    ${this.renderAds()}
+                    ${this.renderAd()}
                     
                 </div>
                 
@@ -135,7 +125,13 @@ module app {
 
         private renderAds() {
 
-            return this.ads.map(ad =>
+            if (this.ads.length === 0) return "";
+
+            let content = `<h2>Liste des annonces</h2>
+                    
+                    <div class="row">`;
+
+            content += this.ads.map(ad =>
                 `<div class="col s12 m4">
                     <card src="${ad.UrlImagePrincipale}" href="edit.html?id=${ad.Id}" title="${ad.Prix} €">
                         <p>
@@ -144,8 +140,17 @@ module app {
                     </card>
                 </div>`
             ).join('');
+
+            return content + `</div>`;
         }
 
+        private renderAd() {
+
+            if (this.currentAdId === undefined) return "";
+
+            return `<ad-details ad-id="${this.currentAdId}"></ad-details>`;
+
+        }
     }
 
     ComponentsFactory.boostrap(AppComponent);

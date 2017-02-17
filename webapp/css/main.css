@@ -88,3 +88,18 @@ hr {
 .card .card-content {
     height: 100px;
 }
+
+.carousel-slider {
+    max-height: 400px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.carousel-slider .indicators .indicator-item {
+    box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);
+}
+.carousel-slider .carousel-item {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
