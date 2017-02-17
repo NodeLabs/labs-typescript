@@ -1,6 +1,6 @@
 module app.services {
 
-    export interface IAdd {
+    export interface IAdDetails {
         Id: number;
         Titre: string;
         Ville: string;
@@ -25,7 +25,7 @@ module app.services {
 
     export class RealEstateAdService {
 
-        getAll(): Promise<IAdd[]> {
+        getAll(): Promise<IAdDetails[]> {
 
             return fetch("api/serviceannoncesimmobilieres")
                 .then(response => response.json())

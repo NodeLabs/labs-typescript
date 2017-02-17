@@ -2,13 +2,13 @@
 module app {
     import CardComponent = app.components.CardComponent;
     import RealEstateAdService = app.services.RealEstateAdService;
-    import IAdd = app.services.IAdd;
+    import IAdDetails = app.services.IAdDetails;
 
     class AppComponent {
 
         private element: JQuery;
         private realEstateAdService = new RealEstateAdService();
-        private ads: IAdd[] = [];
+        private ads: IAdDetails[] = [];
 
         constructor(selector: string = "app") {
 
