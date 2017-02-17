@@ -2,19 +2,19 @@
 module app {
     import CardComponent = app.components.CardComponent;
     import RealEstateAdService = app.services.RealEstateAdService;
-    import IAdd = app.services.IAdd;
+    import IAdd = app.services.IAdDetails;
     import component = app.decorators.component;
     import Component = app.services.Component;
     import ComponentsFactory = app.services.ComponentsFactory;
     import InputSearchComponent = app.components.InputSearchComponent;
-    import IAddRequest = app.services.IAddRequest;
+    import IAdRequest = app.services.IAdRequest;
 
     @component('app', CardComponent, InputSearchComponent)
     class AppComponent extends Component {
 
         private realEstateAdService = new RealEstateAdService();
         private ads: IAdd[] = [];
-        private searchOptions: IAddRequest = {
+        private searchOptions: IAdRequest = {
             Ville: "",
             Achat: true,
             Location: false,

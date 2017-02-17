@@ -2,7 +2,7 @@ module app.services {
 
     import memoize = app.decorators.memoize;
 
-    export interface IAdd {
+    export interface IAdDetails {
         Id: number;
         Titre: string;
         Ville: string;
@@ -25,7 +25,7 @@ module app.services {
         UrlImagePrincipale: string[];
     }
 
-    export interface IAddRequest {
+    export interface IAdRequest {
         Ville: string;
         Achat: boolean;
         Location: boolean;
@@ -46,7 +46,7 @@ module app.services {
          * @returns {Promise<TResult>|Promise<T>|PromiseLike<TResult>|Promise<TResult2|TResult1>}
          */
         @memoize(o => o.Ville)
-        getAll(options?: IAddRequest): Promise<IAdd[]> {
+        getAll(options?: IAdRequest): Promise<IAdDetails[]> {
 
             const parameters = options ? ('?' + this.toParameters(options)) : '';
 
@@ -60,7 +60,7 @@ module app.services {
          * @param options
          * @returns {string}
          */
-        toParameters(options?: IAddRequest): string {
+        toParameters(options?: IAdRequest): string {
 
             return Object.keys(options).map((key) => {
 
