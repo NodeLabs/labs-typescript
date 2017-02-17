@@ -13,7 +13,9 @@ Nous verrons au cours des travaux pratiques les points suivants :
 ## Objectifs
 
 Les TP ont pour objectif de vous apprendre à développer avec le langage TypeScript tout en utilisant des librairies JavaScript 
-préexistante telles que jQuery.
+préexistante telles que jQuery, Materialize-css, fetch ou lodash.
+
+Pour ce faire nous allons créer une petite application web de consultation d'annonce de vente immobilière.
 
 Nous verrons par ailleurs les notions suivantes :
 
