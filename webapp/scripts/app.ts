@@ -2,7 +2,7 @@
 module app {
     import CardComponent = app.components.CardComponent;
     import RealEstateAdService = app.services.RealEstateAdService;
-    import IAdd = app.services.IAdd;
+    import IAdDetails = app.services.IAdDetails;
     import component = app.decorators.component;
     import Component = app.services.Component;
     import ComponentsFactory = app.services.ComponentsFactory;
@@ -11,7 +11,7 @@ module app {
     class AppComponent extends Component {
 
         private realEstateAdService = new RealEstateAdService();
-        private ads: IAdd[] = [];
+        private ads: IAdDetails[] = [];
 
         /**
          *
