@@ -1,7 +1,6 @@
 
 module app.components {
 
-    import IComponent = app.interfaces.IComponent;
     import getAttributes = app.utils.getAttributes;
     import component = app.decorators.component;
     import Component = app.services.Component;
