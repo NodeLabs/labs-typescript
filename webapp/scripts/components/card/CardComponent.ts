@@ -1,10 +1,9 @@
 
 module app.components {
 
-    import IComponent = app.interfaces.IComponent;
     import getAttributes = app.utils.getAttributes;
 
-    export class CardComponent implements IComponent {
+    export class CardComponent {
 
         static selectorName: string = "card";
 
