@@ -1,6 +1,7 @@
 
 module app {
     import CardComponent = app.components.CardComponent;
+
     class AppComponent {
 
         private element: JQuery;

@@ -1,10 +1,9 @@
 
 module app.components {
 
-    import IComponent = app.interfaces.IComponent;
     import getAttributes = app.utils.getAttributes;
 
-    export class CardComponent implements IComponent {
+    export class CardComponent {
 
         static selectorName: string = "card";
 
@@ -16,7 +15,7 @@ module app.components {
          * @param selector
          * @param options
          */
-        private constructor(selector: string | JQuery | Element = CardComponent.selectorName) {
+        constructor(selector: string | JQuery | Element = CardComponent.selectorName) {
             this._element = jQuery(selector);
             this._content = this.element.html();
 
@@ -27,7 +26,7 @@ module app.components {
          *
          * @returns {string}
          */
-        render(): string {
+        private render(): string {
 
             const {src, href, title} = getAttributes(this.element);
 
