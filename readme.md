@@ -7,7 +7,7 @@ Nous verrons au cours des travaux pratiques les points suivants :
 * [TP 3 - Création d'un service et appel d'un webservice](https://github.com/Romakita/tp-typescript/blob/master/tp3-service.md),
 * [TP 4 - Création d'un décorateur](https://github.com/Romakita/tp-typescript/blob/master/tp4-decorator.md),
 * [TP 5 - Création d'un composant de recherche](https://github.com/Romakita/tp-typescript/blob/master/tp5-composant-recherche.md),
-* [TP 6 - Visualiser une annonce](https://github.com/Romakita/tp-typescript/blob/master/tp6-edition.md).
+* [TP 6 - Visualiser une annonce](https://github.com/Romakita/tp-typescript/blob/master/tp6-consultation.md).
 
 
 ## Objectifs
