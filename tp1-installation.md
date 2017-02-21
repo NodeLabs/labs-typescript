@@ -17,7 +17,7 @@ Créez un nouveau projet dans votre IDE. Puis dans le terminal, placez-vous sur 
 npm init
 ```
 
-> Suivez le guide d'initialisation de la commande.
+> Suivez le guide d'initialisation de la commande. Elle va créer le fichier `package.json` avec les informations du projet.
 
 ### Installation des modules
 
