@@ -160,7 +160,7 @@ L'exercice sera d'intercepter la balise `app` et d'y afficher un `HELLO WORLD` a
 
 > Note 2 : pour compiler votre fichier TypeScript `tsc`.
 
-> Correction du TP : [tp1-solution](https://github.com/Romakita/tp-typscript/tree/tp1-installation)
+> Correction du TP : [tp1-solution](https://github.com/Romakita/tp-typescript/tree/tp1-installation)
 
 
 [Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp2-composant.md)
