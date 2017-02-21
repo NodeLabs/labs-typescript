@@ -2,9 +2,9 @@
 
 Notre exercice sera de créer un premier composant `card` basé sur le framework CSS materialize-css ([documentation](http://materializecss.com/cards.html)).
 
-Ce composant card nous permettre d'afficher un résumé d'une annonce. Nous le réutiliserons pour afficher une liste d'annonce très visuel !
+Ce composant `card` nous permettre d'afficher un résumé d'une annonce. Nous le réutiliserons pour afficher une liste d'annonce très visuel !
 
-Voici le template : 
+Voici le template materialize-css d'une `card`: 
 
 ```html
 <div class="card">
@@ -23,7 +23,7 @@ Voici le template :
 </div>
 ```
 
-> Nous allons construire se componsant ensemble !
+> Nous allons construire ce composant ensemble !
 
 > Correction du TP : [tp2-solution](https://github.com/Romakita/tp-typscript/tree/tp2-solution)
 
