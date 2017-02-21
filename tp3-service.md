@@ -44,6 +44,14 @@ avec pour reponse la liste des annonces.
 * ListImagesUrl : tableau de string,
 * UrlImagePrincipale : tableau de string.
 
+### Installation de fetch
+
+```bash
+npm install --save whatwg-fetch @types/whatwg-fetch 
+```
+
+> N'oubliez pas de rajouter whatwg-fetch à la liste des `types` dans votre `tsconfig.json` ! 
+
 ### Exercice 1
 
 A partir de la structure d'annonce créer une interface TypeScript correspondant à sa structure.
@@ -61,6 +69,6 @@ Typer le retour de la methode `getAll()` de façon à ce qu'elle expose une Prom
 
 Utiliser la méthode `getAll()` dans l'application pour afficher la liste d'annonce avec notre composant `card`.
 
-> Correction du TP  : [tp3-solution](https://github.com/Romakita/tp-typscript/tree/tp3-solution)
+> Correction du TP  : [tp3-solution](https://github.com/Romakita/tp-typescript/tree/tp3-solution)
 
 [Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp4-decorator.md)
