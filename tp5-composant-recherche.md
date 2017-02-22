@@ -56,7 +56,7 @@ Exemple d'url : `api/serviceannoncesimmobilieres?Ville=paris&Achat=True&Location
 
 ### Exercice 1
 
-Créer l'interface `IAdRequest correspondant aux paramètres.
+Créer l'interface `IAdRequest` correspondant aux paramètres.
 
 ### Exercice 2
 
