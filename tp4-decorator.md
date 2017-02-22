@@ -4,7 +4,6 @@ L'idée est de déléguer la création de composant à un factory que l'on nomme
 
 Cette factory sera ni plus ni moins qu'un registre de composant collecté par le décorateur `@component`.
 
-
 Voici un exemple de ce qui sera attendu :
 
 ```typescript
@@ -33,7 +32,6 @@ ComponentsFactory.bootstrap(AppComponent);
 
 > Cette exemple va intercepter tous les éléments `card` et créer une nouvelle instance de `CardComponent`.
 
-
 ### Création du ComponentsFactory
 
 Dans le dossier `services` nous allons créer un nouveau fichier `ComponentsFactory.ts`.
@@ -43,9 +41,6 @@ Voici une partie de l'implémentation de la factory :
 ```typescript
 module app.services {
 
-    /**
-     *
-     */
     export class ComponentsFactory {
         private static components = new Map<string | any, any | string>();
 
@@ -109,7 +104,6 @@ Maintenant que notre classe abstraite est défini nous pourrons l'utiliser comme
 @component('card')
 export class CardComponent extends Component {
    
-    
     render() {
         return "Hello card";
     }
@@ -214,6 +208,6 @@ module app.services {
 
 Maintenant notre `ComponentsFactory` est prête il nous reste plus qu'à adapter notre application !
 
-> Correction du TP  : [tp4-solution](https://github.com/Romakita/tp-typscript/tree/tp4-solution)
+> Correction du TP  : [tp4-solution](https://github.com/Romakita/tp-typescript/tree/tp4-solution)
 
 [Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp5-composant-recherche.md)
