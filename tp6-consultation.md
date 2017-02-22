@@ -30,4 +30,4 @@ A vous de jouer !
 Vous devez afficher les photos de l'annonce dans un carousel fournit par [Materialize-css](http://materializecss.com/carousel.html).
 Ensuite vous devez afficher le détail de l'annonce.
 
-> Correction du TP  : [tp6-solution](https://github.com/Romakita/tp-typscript/tree/tp6-solution)
+> Correction du TP  : [tp6-solution](https://github.com/Romakita/tp-typescript/tree/tp6-solution)
