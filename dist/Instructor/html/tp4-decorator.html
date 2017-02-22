@@ -120,9 +120,6 @@ ComponentsFactory.bootstrap(AppComponent);
 <p>Voici une partie de l'implémentation de la factory :</p>
 <pre><code class="language-typescript">module app.services {
 
-    /**
-     *
-     */
     export class ComponentsFactory {
         private static components = new Map&#x3C;string | any, any | string>();
 
@@ -176,7 +173,6 @@ de classe, ici les composants.</p>
 <pre><code class="language-typescript">@component('card')
 export class CardComponent extends Component {
    
-    
     render() {
         return "Hello card";
     }
@@ -267,7 +263,7 @@ au selecteur que nous avons collecté avec le décorateur <code>@component()</co
 </code></pre>
 <p>Maintenant notre <code>ComponentsFactory</code> est prête il nous reste plus qu'à adapter notre application !</p>
 <blockquote>
-<p>Correction du TP  : <a href="https://github.com/Romakita/tp-typscript/tree/tp4-solution">tp4-solution</a></p>
+<p>Correction du TP  : <a href="../../Resources/tp4-solution.zip">tp4-solution</a></p>
 </blockquote>
 <p><a href="tp5-composant-recherche.html">Suivant</a></p>
 
