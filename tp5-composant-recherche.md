@@ -56,14 +56,12 @@ Exemple d'url : `api/serviceannoncesimmobilieres?Ville=paris&Achat=True&Location
 
 ### Exercice 1
 
-Créer l'interface IAdRequest correspondant aux paramètres.
+Créer l'interface `IAdRequest correspondant aux paramètres.
 
 ### Exercice 2
 
 Créer un composant permettant de rechercher les annonces par ville.
 
-
-> Correction du TP  : [tp5-solution](https://github.com/Romakita/tp-typscript/tree/tp5-solution)
-
+> Correction du TP  : [tp5-solution](https://github.com/Romakita/tp-typescript/tree/tp5-solution)
 
 [Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp6-consultation.md)
