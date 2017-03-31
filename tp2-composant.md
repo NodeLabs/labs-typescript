@@ -25,6 +25,6 @@ Voici le template materialize-css d'une `card`:
 
 > Nous allons construire ce composant ensemble !
 
-> Correction du TP : [tp2-solution](https://github.com/Romakita/tp-typescript/tree/tp2-solution)
+> Correction du TP : [tp2-solution](https://github.com/NodeAndTyped/labs-typescript/tree/tp2-solution)
 
-[Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp3-service.md)
+[Suivant](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp3-service.md)

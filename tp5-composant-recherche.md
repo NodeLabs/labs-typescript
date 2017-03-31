@@ -62,6 +62,6 @@ Créer l'interface `IAdRequest` correspondant aux paramètres.
 
 Créer un composant permettant de rechercher les annonces par ville.
 
-> Correction du TP  : [tp5-solution](https://github.com/Romakita/tp-typescript/tree/tp5-solution)
+> Correction du TP  : [tp5-solution](https://github.com/NodeAndTyped/labs-typescript/tree/tp5-solution)
 
-[Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp6-consultation.md)
+[Suivant](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp6-consultation.md)

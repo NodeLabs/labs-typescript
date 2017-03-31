@@ -69,6 +69,6 @@ Typer le retour de la methode `getAll()` de façon à ce qu'elle expose une Prom
 
 Utiliser la méthode `getAll()` dans l'application pour afficher la liste d'annonce avec notre composant `card`.
 
-> Correction du TP  : [tp3-solution](https://github.com/Romakita/tp-typescript/tree/tp3-solution)
+> Correction du TP  : [tp3-solution](https://github.com/NodeAndTyped/labs-typescript/tree/tp3-solution)
 
-[Suivant](https://github.com/Romakita/tp-typescript/blob/master/tp4-decorator.md)
+[Suivant](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp4-decorator.md)
