@@ -60,3 +60,6 @@ typings/
 .env
 .DS_Store
 .idea
+tools/**/*.js
+tools/**/*.js.map
+!tools/models/scripts/*.js
