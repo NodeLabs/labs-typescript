@@ -9,27 +9,45 @@
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Merriweather:400,300,700" rel="stylesheet" type="text/css">
 
-    <link type="text/css" rel="stylesheet" href="styles/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="styles/github-markdown.css" />
-    <link type="text/css" rel="stylesheet" href="styles/glyph.css" />
-    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+    <link type="text/css" rel="stylesheet" href="assets/styles/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/styles/github-markdown.css" />
+    <link type="text/css" rel="stylesheet" href="assets/styles/github.css" />
+    <link type="text/css" rel="stylesheet" href="assets/styles/glyph.css" />
+    <link type="text/css" rel="stylesheet" href="assets/styles/main.css" />
 
 </head>
 <body>
+
 
 <header class="navbar-fixed">
 
     <nav class="navbar">
         <div class="nav-wrapper">
-            <a href="http://valtech.fr" class="brand-logo">
+            <a href="http://valtech.fr" class="brand-logo hide-on-med-and-down">
                 <i class="valtech-logo--header glyph" data-icon="valtech-logo" aria-hidden="true"></i>
             </a>
 
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a class="brand-logo center">
+                Labs TypeScript
+            </a>
 
-            <ul class="right hide-on-med-and-down">
+            <a href="#" data-activates="global-menu-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul class="right">
                 <li>
-                    <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                    <a href="https://github.com/NodeAndTyped/labs-typescript/" title="See on github">
+                        <i class="material-icons">visibility</i>
+                    </a>
+                </li>
+
+                <li class="hide-on-med-and-down">
+                    <a href="#!" class="dropdown-button" title="download" data-activates="global-menu-download" data-beloworigin="true">
+                        <i class="material-icons">file_download</i>
+                    </a>
+                </li>
+
+                <li class="hide-on-med-and-down">
+                    <a class="dropdown-button" href="#!" data-activates="global-menu" data-beloworigin="true">
                         <i class="material-icons">menu</i>
                     </a>
                 </li>
@@ -41,7 +59,7 @@
 
 </header>
 
-<ul class="side-nav" id="mobile-demo">
+<ul class="side-nav" id="global-menu-mobile">
 
     <li class="logo">
 
@@ -50,41 +68,102 @@
     </li>
 
     
-    <li><a href="index.html">Accueil</a></li>
-    
-    <li><a href="tp1-installation.html">TP1 - Installation</a></li>
-    
-    <li><a href="tp2-composant.html">TP2 - Création d&#39;un composant</a></li>
-    
-    <li><a href="tp3-service.html">TP3 - Création d&#39;un service et appel d&#39;un webservice</a></li>
-    
-    <li><a href="tp4-decorator.html">TP4 - Création d&#39;un décorateur</a></li>
-    
-    <li><a href="tp5-composant-recherche.html">TP5 - Rechercher une annonce</a></li>
-    
-    <li><a href="tp6-consultation.html">TP6 - Consultation d&#39;une annonce</a></li>
-    
+            <li><a href="index.html">Accueil</a></li>
+        
+            <li><a href="tp1-installation.html">TP1 - Installation</a></li>
+        
+            <li><a href="tp2-composant.html">TP2 - Création d&#39;un composant</a></li>
+        
+            <li><a href="tp3-service.html">TP3 - Création d&#39;un service et appel d&#39;un webservice</a></li>
+        
+            <li><a href="tp4-decorator.html">TP4 - Création d&#39;un décorateur</a></li>
+        
+            <li><a href="tp5-composant-recherche.html">TP5 - Rechercher une annonce</a></li>
+        
+            <li><a href="tp6-consultation.html">TP6 - Consultation d&#39;une annonce</a></li>
+        
+
+    <li><div class="divider"></div></li>
+
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Télécharger<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+
+                        <li>
+                            <a href="https://github.com/NodeAndTyped/labs-typescript/zipball/master">
+                                Documentation (master)
+                            </a>
+                        </li>
+
+                        
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp1-installation.zip">tp1-installation</a></li>
+                            
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp2-solution.zip">tp2-solution</a></li>
+                            
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp3-solution.zip">tp3-solution</a></li>
+                            
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp4-solution.zip">tp4-solution</a></li>
+                            
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp5-solution.zip">tp5-solution</a></li>
+                            
+                                <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp6-solution.zip">tp6-solution</a></li>
+                            
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+
 </ul>
 
-<ul id="dropdown1" class="dropdown-content">
+<ul id="global-menu" class="dropdown-menu dropdown-content">
     
-    <li><a href="index.html">Accueil</a></li>
-    
-    <li><a href="tp1-installation.html">TP1 - Installation</a></li>
-    
-    <li><a href="tp2-composant.html">TP2 - Création d&#39;un composant</a></li>
-    
-    <li><a href="tp3-service.html">TP3 - Création d&#39;un service et appel d&#39;un webservice</a></li>
-    
-    <li><a href="tp4-decorator.html">TP4 - Création d&#39;un décorateur</a></li>
-    
-    <li><a href="tp5-composant-recherche.html">TP5 - Rechercher une annonce</a></li>
-    
-    <li><a href="tp6-consultation.html">TP6 - Consultation d&#39;une annonce</a></li>
-    
+            <li><a href="index.html">Accueil</a></li>
+        
+            <li><a href="tp1-installation.html">TP1 - Installation</a></li>
+        
+            <li><a href="tp2-composant.html">TP2 - Création d&#39;un composant</a></li>
+        
+            <li><a href="tp3-service.html">TP3 - Création d&#39;un service et appel d&#39;un webservice</a></li>
+        
+            <li><a href="tp4-decorator.html">TP4 - Création d&#39;un décorateur</a></li>
+        
+            <li><a href="tp5-composant-recherche.html">TP5 - Rechercher une annonce</a></li>
+        
+            <li><a href="tp6-consultation.html">TP6 - Consultation d&#39;une annonce</a></li>
+        
 </ul>
 
-<div class="container">
+
+<ul id="global-menu-download" class="dropdown-menu dropdown-content">
+    <li>
+        <a href="https://github.com/NodeAndTyped/labs-typescript/zipball/master">
+            Télécharger la documentation (master)
+        </a>
+    </li>
+
+    <li class="divider"></li>
+
+    
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp1-installation.zip">Télécharger tp1-installation</a></li>
+        
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp2-solution.zip">Télécharger tp2-solution</a></li>
+        
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp3-solution.zip">Télécharger tp3-solution</a></li>
+        
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp4-solution.zip">Télécharger tp4-solution</a></li>
+        
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp5-solution.zip">Télécharger tp5-solution</a></li>
+        
+            <li><a href="https://github.com/NodeAndTyped/labs-typescript/archive/tp6-solution.zip">Télécharger tp6-solution</a></li>
+        
+
+</ul>
+
+<div class="container container-body">
     <article class="markdown-body">
         <h1>TP5 - Rechercher une annonce</h1>
 <p>Nous allons maintenant créer une composant permettant de rechercher une annonce.
@@ -182,7 +261,7 @@ des options de recherche.</p>
 
             © Valtech 2016
 
-            <a  class="grey-text text-lighten-4 right"  href="/services/mentions-legales-cgu/">
+            <a  class="grey-text text-lighten-4 right"  href="http://valtech.fr/services/mentions-legales-cgu/">
                 Mentions légales / CGU
             </a>
 
@@ -192,13 +271,21 @@ des options de recherche.</p>
 
 </footer>
 
-<script type="text/javascript" src="scripts/jquery.min.js"></script>
-<script type="text/javascript" src="scripts/materialize.min.js"></script>
+<script type="text/javascript" src="assets/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="assets/scripts/materialize.min.js"></script>
+<script type="text/javascript" src="assets/scripts/highlight.pack.js"></script>
+
 <script>
     $( document ).ready(function(){
         $(".button-collapse").sideNav();
         $(".dropdown-button").dropdown();
     });
 </script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
 </body>
 </html>

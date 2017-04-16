@@ -165,186 +165,41 @@
 
 <div class="container container-body">
     <article class="markdown-body">
-        <h1>TP 4 - Les décorateurs</h1>
-<p>L'idée est de déléguer la création de composant à un factory que l'on nommera <code>ComponentsFactory</code>.</p>
-<p>Cette factory sera ni plus ni moins qu'un registre de composant collecté par le décorateur <code>@component</code>.</p>
-<p>Voici un exemple de ce qui sera attendu :</p>
-<pre><code class="typescript">@component('card')
-export class CardComponent extends Component {
-   
+        <h1>TP TypeScript</h1>
+<p>Nous verrons au cours des travaux pratiques les points suivants :</p>
+<ul class="page-summary">
     
-    render() {
-        return "Hello card";
-    }
-}
-
-@component('app', Card)
-export class AppComponent extends Component {
+        <li><a href="tp1-installation.html">TP1 - Installation</a></li>
     
-    render() {
-        return `
-            &#x3C;card>&#x3C;/card>  
-        `;
-    }
+        <li><a href="tp2-composant.html">TP2 - Création d&#39;un composant</a></li>
     
-}
-
-ComponentsFactory.bootstrap(AppComponent);
-</code></pre>
-<blockquote>
-<p>Cette exemple va intercepter tous les éléments <code>card</code> et créer une nouvelle instance de <code>CardComponent</code>.</p>
-</blockquote>
-<h3>Création du ComponentsFactory</h3>
-<p>Dans le dossier <code>services</code> nous allons créer un nouveau fichier <code>ComponentsFactory.ts</code>.</p>
-<p>Voici une partie de l'implémentation de la factory :</p>
-<pre><code class="typescript">module app.services {
-
-    export class ComponentsFactory {
-        private static components = new Map&#x3C;string | any, any | string>();
-
-        /**
-         * Add a new component in registry.
-         */
-        static add(selector: string, target: any, childrens: any[] = []) {
-
-            target.$childrens = childrens;
-
-            this.components.set(selector, target);
-            this.components.set(target, selector);
-        }
-
-    }
-}
-</code></pre>
-<h3>Création du décorateur</h3>
-<p>Maintenant nous allons développer le décorateur de classe pour collecter les classes auxquelles il sera associé.</p>
-<p>À partir de l'exemple donné dans le cours, créez le décorateur ! Ce décorateur aura deux paramètres :</p>
-<ul>
-<li>selector : le selecteur css associé à la classe composant,</li>
-<li>dependencies : Aggregateur contenant la liste des composants utilisés par la classe en court.</li>
-</ul>
-<h2>Modification de l'application</h2>
-<p>Une fois votre décorateur réalisé, nous allons l'utiliser sur la classe <code>CardComponent</code> et <code>AppComponent</code>.
-Ajoutez donc votre décorateur <code>@component</code> comme présenté dans le premier exemple et vérifiez que le décorateur fonctionne.</p>
-<blockquote>
-<p>Si vous souhaitez tester votre décorateur, vous pouvez ajouter un console.log() pour voir si votre composant est bien collecté.</p>
-</blockquote>
-<p>A se stade, nous n'avons implémenté qu'une partie de la logique. Le décorateur fait ce qu'on lui demande, mais il fait
-développer un peu notre <code>ComponentsFactory</code> pour qu'il gère complétement le cycle de vie de nos composants.</p>
-<p>Nous allons commencer par simplifier nos composants et déléguer un maximum de traitement vers la classe <code>Component</code> et <code>ComponentsFactory</code>.</p>
-<h3>Utilisation de classe abstraite</h3>
-<p>L'utilisation de classe de abstraite permet de fournir une classe de base contenant un certain nombre de fonctionnalité commune à un type
-de classe, ici les composants.</p>
-<p>Voici les possibilités d'une classe abstraite :</p>
-<ul>
-<li>Ne peut être instancié directement. Elle doit donc être étendu (héritage).</li>
-<li>Elle contient des attributs et méthodes avec implémentation.</li>
-<li>Elle peut définir des méthodes abstraites. Ainsi une méthode abstraite doit obligatoirement être implémenté dans la classe fille.</li>
-</ul>
-<p>Nous allons donc implémenter cette classe ensemble ! Elle aura pour objectifs :</p>
-<ul>
-<li>De construire l'élément jQuery,</li>
-<li>Exposer des accesseurs à l'élément jQuery et aux attributs de l'élément,</li>
-<li>Stocker le contenu d'origine de la balise,</li>
-<li>De définir une méthode abstraite <code>render()</code>.</li>
-</ul>
-<p>Maintenant que notre classe abstraite est défini nous pourrons l'utiliser comme dans l'exemple suivant :</p>
-<pre><code class="typescript">@component('card')
-export class CardComponent extends Component {
-   
-    render() {
-        return "Hello card";
-    }
-}
-</code></pre>
-<h3>Finalisation de ComponentsFactory</h3>
-<p>Nous allons maintenant agrémenter la classe ComponentsFactory afin de gérer le cycle de vie suivant :</p>
-<ul>
-<li>Initialisation du premier composant,</li>
-<li>Rendu du composant et des composants utilisés par le composant,</li>
-<li>Rappel après création du rendu du composant en cours.</li>
-</ul>
-<h4>Initialisation du premier composant</h4>
-<p>Pour gérer l'initialisation du premier composant nous allons rajouter ceci :</p>
-<pre><code class="typescript">module app.services {
-
-    export class ComponentsFactory {
-
-        static boostrap(cmpClazz: any) {
-
-            jQuery(document).ready(() => {
-                this.render(cmpClazz);
-            });
-
-        }
-
-    }
-}
-</code></pre>
-<h3>Implémentation de la méthode render()</h3>
-<p>Cette méthode prend la classe d'un composant (<code>Card</code> par exemple) et recherche dans le DOM tous les élements correspondant
-au selecteur que nous avons collecté avec le décorateur <code>@component()</code>.</p>
-<pre><code class="typescript">module app.services {
-
-    export class ComponentsFactory {
+        <li><a href="tp3-service.html">TP3 - Création d&#39;un service et appel d&#39;un webservice</a></li>
     
-        static render(cmpClazz: any) {
+        <li><a href="tp4-decorator.html">TP4 - Création d&#39;un décorateur</a></li>
+    
+        <li><a href="tp5-composant-recherche.html">TP5 - Rechercher une annonce</a></li>
+    
+        <li><a href="tp6-consultation.html">TP6 - Consultation d&#39;une annonce</a></li>
+    
+</ul>
 
-            const selector: string = this.components.get(cmpClazz) as string;
-
-            this.fromSelector(selector, cmpClazz)
-                .forEach(cmp => cmp.render());
-
-        }
-    }
-}
-</code></pre>
-<h3>Implémentation de la méthode fromSelector()</h3>
-<pre><code class="typescript">module app.services {
-
-    export class ComponentsFactory {
-        static fromSelector(selector: string, componentClazz: any) {
-
-            const elements = jQuery(selector);
-            const cmps = [];
-
-            elements.each((index, element: Element) => {
-
-                const cmp = new componentClazz(element);
-
-                cmps.push(cmp);
-
-                if (cmp.onInit) {
-                    cmp.onInit();
-                }
-
-                cmp.$render = cmp.render;
-
-                cmp.render = function() {
-                    this.element.html(this.$render());
-
-                    componentClazz.$childrens.forEach(childrenClazz => {
-
-                        ComponentsFactory.render(childrenClazz);
-
-                    });
-
-                    if (this.afterRender) {
-                        this.afterRender();
-                    }
-                };
-            });
-
-            return cmps;
-        }
-    }
-}
-</code></pre>
-<p>Maintenant notre <code>ComponentsFactory</code> est prête il nous reste plus qu'à adapter notre application !</p>
-<blockquote>
-<p>Correction du TP  : <a href="../../Resources/tp4-solution.zip">tp4-solution</a></p>
-</blockquote>
-<p><a href="tp5-composant-recherche.html">Suivant</a></p>
+<h2>Objectifs</h2>
+<p>Les TP ont pour objectif de vous apprendre à développer avec le langage TypeScript tout en utilisant des librairies JavaScript
+préexistante telles que jQuery, Materialize-css, fetch ou lodash.</p>
+<p>Pour ce faire nous allons créer une petite application web de consultation d'annonce de vente immobilière.</p>
+<p>Nous verrons par ailleurs les notions suivantes :</p>
+<ul>
+<li>Utiliser les arrows functions,</li>
+<li>Utiliser les mots clefs let et const,</li>
+<li>Créer une classe TypeScript,</li>
+<li>Créer une interface pour typer un objet retourné par un WebService,</li>
+<li>Gérer des templates,</li>
+<li>Utiliser l'héritage pour concevoir des composants,</li>
+<li>Utiliser l'aggregation de paramètre,</li>
+<li>Utiliser les collections ES6,</li>
+<li>Utiliser la librairie fetch pour faire un appel Ajax,</li>
+<li>Créer un décorateur TypeScript pour faciliter la création de composant.</li>
+</ul>
 
     </article>
 </div>

@@ -1,31 +1,21 @@
-# TP TypeScript
+# Labs TypeScript
 
-Nous verrons au cours des travaux pratiques les points suivants :
+Voir l'ensemble du cours sur [http://NodeAndTyped.github.io/labs-typescript](http://NodeAndTyped.github.io/labs-typescript).
 
-* [TP 1 – Mise en place de l’environnement](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp1-installation.md),
-* [TP 2 - Création d'un composant](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp2-composant.md),
-* [TP 3 - Création d'un service et appel d'un webservice](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp3-service.md),
-* [TP 4 - Création d'un décorateur](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp4-decorator.md),
-* [TP 5 - Rechercher une annonce](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp5-composant-recherche.md),
-* [TP 6 - Visualiser une annonce](https://github.com/NodeAndTyped/labs-typescript/blob/master/tp6-consultation.md).
+# Mise à jour du contenu
 
+L'ensemble des cours sont écris en markdown et sont situés dans le dossier `docs`.
 
-## Objectifs
+## Génération de la documentation
 
-Les TP ont pour objectif de vous apprendre à développer avec le langage TypeScript tout en utilisant des librairies JavaScript 
-préexistante telles que jQuery, Materialize-css, fetch ou lodash.
+Vous pouvez générer la documentation en lançant la commande suivante :
 
-Pour ce faire nous allons créer une petite application web de consultation d'annonce de vente immobilière.
+```bash
+npm run build
+```
 
-Nous verrons par ailleurs les notions suivantes :
+## Configuration
 
-* Utiliser les arrows functions,
-* Utiliser les mots clefs let et const,
-* Créer une classe TypeScript,
-* Créer une interface pour typer un objet retourné par un WebService,
-* Gérer des templates,
-* Utiliser l'héritage pour concevoir des composants,
-* Utiliser l'aggregation de paramètre,
-* Utiliser les collections ES6,
-* Utiliser la librairie fetch pour faire un appel Ajax,
-* Créer un décorateur TypeScript pour faciliter la création de composant.
+La génération du document est basée sur la configuration du fichier `generator.json`.
+
+Vous devez préciser explicitement les fichier .md à convertir en HTML et/ou PDF.
