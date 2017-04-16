@@ -1,4 +1,4 @@
-# TP TypeScript
+# Sommaire
 
 Nous verrons au cours des travaux pratiques les points suivants :
 
