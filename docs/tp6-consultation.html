@@ -165,143 +165,31 @@
 
 <div class="container container-body">
     <article class="markdown-body">
-        <h1>TP 1 - Installation de l'environnement</h1>
-<h2>Prérequis</h2>
-<p>Vérifier que vous avez les éléments suivants d’installé sur votre poste :</p>
+        <h1>TP6 - Visualisation d'une annonce</h1>
+<p>L'objectif est de visualiser une annonce dans une nouvelle page.</p>
+<h1>Exercice 1</h1>
+<p>Créez la nouvelle page <code>edit.html</code> dans lequel vous appelerez le composant <code>&#x3C;app type="edit"></code> avec l'option <code>edit</code> par exemple.</p>
+<blockquote>
+<p>Vous pouvez faire autrement si vous le souhaitez.</p>
+</blockquote>
+<h1>Exercice 2</h1>
+<p>Il vous faudra récupérer l'id de l'annonce cliqué dans la page précédente et afficher les informations
+de l'annonce.</p>
+<p>Vous avez un service web qui permet de récupérer une annonce !</p>
+<h4>Le contrat de service</h4>
 <ul>
-<li>Node v6 ou plus avec la commande npm –v,</li>
-<li>Git, nous l’utiliserons pour récupérer le projet initial,</li>
-<li>Webstorm (ou un autre IDE)</li>
+<li>Methode : GET</li>
+<li>Url : <code>api/serviceannoncesimmobilieres/{id}</code></li>
+<li>Réponse : Une annonce</li>
 </ul>
-<h2>Installation</h2>
-<h3>Initialisation du projet</h3>
-<p>Créez un nouveau projet dans votre IDE. Puis dans le terminal, placez-vous sur votre nouveau projet et lancez la commande suivante :</p>
-<pre><code class="bash">npm init
-</code></pre>
+<p>Vous devrez donc créer une nouvelle méthode dans <code>RealEstateAdService</code> pour récupérer une instance annonce.</p>
+<p>A vous de jouer !</p>
+<h1>Exercice 3</h1>
+<p>Vous devez afficher les photos de l'annonce dans un carousel fournit par <a href="http://materializecss.com/carousel.html">Materialize-css</a>.
+Ensuite vous devez afficher le détail de l'annonce.</p>
 <blockquote>
-<p>Suivez le guide d'initialisation de la commande. Elle va créer le fichier <code>package.json</code> avec les informations du projet.</p>
+<p>Correction du TP : <a href="resources/tp6-solution.zip">tp6-solution</a></p>
 </blockquote>
-<h3>Installation des modules</h3>
-<p>Maintenant nous allons installer les modules nécessaires à un projet TypeScript.</p>
-<p>Toujours dans le terminal lancez la commande suivante :</p>
-<pre><code>npm install -g typescript@2.0 
-npm install --save @types/jquery materialize-css
-npm install --save-dev connect-history-api-fallback http-proxy-middleware lite-server
-tsc --init
-</code></pre>
-<blockquote>
-<p>Nous travaillerons de préférence avec la version 2.0 de TypeScript</p>
-</blockquote>
-<p>La commande <code>tsc --init</code> va créer un nouveau fichier <code>tsconfig.json</code>. Ce fichier contient les informations nécessaire
-au compilateur TypeScript pour compiler nos fichiers sources.</p>
-<p>En l'état, il nous manque quelques options de compilation dans le <code>tsconfig.json</code>.</p>
-<p>Voici les options à reporter dans votre <code>tsconfig.json</code>: </p>
-<pre><code class="json">{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "noImplicitAny": false,
-    "lib": [
-      "es6",
-      "dom",
-      "es2015.collection"
-    ],
-    "types": [
-      "jquery"
-    ],
-    "experimentalDecorators":true,
-    "emitDecoratorMetadata": true,
-    "sourceMap": true,
-    "declaration": false
-  },
-  "exclude": ["node_modules"]
-}
-</code></pre>
-<blockquote>
-<p>Votre projet est prêt pour compiler du TypeScript</p>
-</blockquote>
-<h3>Création du serveur de développement</h3>
-<p>Nous allons maintenant mettre en place le serveur de développement.</p>
-<p>A la racine de projet, créer le fichier bs-config.js et collez le script suivant :</p>
-<pre><code class="javascript">var proxyMiddleware = require('http-proxy-middleware');
-var fallbackMiddleware = require('connect-history-api-fallback');
-
-module.exports = {
-    "port": 8000,
-    "files": [
-        "./webapp/**/*.{html,htm,css,js}",
-        "./node_modules/**/*.{html,htm,css,js}"
-    ],
-    "server": {
-        "baseDir": "webapp",
-        "routes": {
-            "/node_modules": "node_modules"
-        },
-
-        middleware: {
-            1: proxyMiddleware('/api', {
-                target: 'http://futurlogement5.azurewebsites.net',
-                changeOrigin: true   // for vhosted sites, changes host header to match to target's host
-            }),
-
-            2: fallbackMiddleware({
-                index: '/index.html',
-                verbose: true
-            })
-        }
-    }
-};
-</code></pre>
-<p>Ensuite il vous faut éditer le <code>package.json</code> et ajouter ceci :</p>
-<pre><code>{
-  "scripts": {
-     "serve": "lite-server"
-  }
-}
-</code></pre>
-<blockquote>
-<p><code>scripts</code> permet d'ajouter de nouvelle commande NPM qui peuvent être appelées en ligne de commande avec <code>npm run [nom cmd]</code>.</p>
-</blockquote>
-<p>Notre serveur de développement est prêt. Il nous reste plus qu'à créer un dossier <code>webapp</code> avec une première page <code>index.html</code>.</p>
-<h3>Création de l'application web</h3>
-<p>Voici à quoi la page d'index doit ressembler :</p>
-<pre><code class="html">&#x3C;!DOCTYPE html>
-&#x3C;html lang="en">
-&#x3C;head>
-    &#x3C;title>TP&#x3C;/title>
-    &#x3C;!--Import Google Icon Font-->
-    &#x3C;link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    &#x3C;!--Import materialize.css-->
-    &#x3C;link type="text/css" rel="stylesheet" href="node_modules/materialize-css/bin/materialize.css"  media="screen,projection"/>
-
-    &#x3C;!--Let browser know website is optimized for mobile-->
-    &#x3C;meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-&#x3C;/head>
-&#x3C;body>
-
-    &#x3C;app>
-
-    &#x3C;/app>
-
-    &#x3C;!-- vendor -->
-    &#x3C;script type="text/javascript" src="node_modules/materialize-css/bin/jquery-2.1.1.min.js">&#x3C;/script>
-    &#x3C;script type="text/javascript" src="node_modules/materialize-css/bin/materialize.js">&#x3C;/script>
-    &#x3C;!-- end vendor -->
-
-    &#x3C;script type="text/javascript" src="scripts/app.js">&#x3C;/script>
-&#x3C;/body>
-&#x3C;/html>
-</code></pre>
-<p>Ici il nous manque le script <code>app.js</code>. Notez que dans la page d'index nous incluerons toujours le fichier javascript généré par TypeScript et non
-le fichier <code>app.ts</code>. </p>
-<p>Dans le dossier <code>scripts</code>, créer un nouveau fichier <code>app.ts</code>.</p>
-<p>L'exercice sera d'intercepter la balise <code>app</code> et d'y afficher un <code>HELLO WORLD</code> avec jQuery.</p>
-<blockquote>
-<p>Note : pour lancer votre server <code>npm run serve</code>.</p>
-<p>Note 2 : pour compiler votre fichier TypeScript <code>tsc</code>.</p>
-<p>Correction du TP : <a href="../../Resources/tp1-installation.zip">tp1-installation</a></p>
-</blockquote>
-<p><a href="tp2-composant.html">Suivant</a></p>
 
     </article>
 </div>

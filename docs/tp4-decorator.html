@@ -165,143 +165,186 @@
 
 <div class="container container-body">
     <article class="markdown-body">
-        <h1>TP 1 - Installation de l'environnement</h1>
-<h2>Prérequis</h2>
-<p>Vérifier que vous avez les éléments suivants d’installé sur votre poste :</p>
-<ul>
-<li>Node v6 ou plus avec la commande npm –v,</li>
-<li>Git, nous l’utiliserons pour récupérer le projet initial,</li>
-<li>Webstorm (ou un autre IDE)</li>
-</ul>
-<h2>Installation</h2>
-<h3>Initialisation du projet</h3>
-<p>Créez un nouveau projet dans votre IDE. Puis dans le terminal, placez-vous sur votre nouveau projet et lancez la commande suivante :</p>
-<pre><code class="bash">npm init
+        <h1>TP 4 - Les décorateurs</h1>
+<p>L'idée est de déléguer la création de composant à un factory que l'on nommera <code>ComponentsFactory</code>.</p>
+<p>Cette factory sera ni plus ni moins qu'un registre de composant collecté par le décorateur <code>@component</code>.</p>
+<p>Voici un exemple de ce qui sera attendu :</p>
+<pre><code class="typescript">@component('card')
+export class CardComponent extends Component {
+   
+    
+    render() {
+        return "Hello card";
+    }
+}
+
+@component('app', Card)
+export class AppComponent extends Component {
+    
+    render() {
+        return `
+            &#x3C;card>&#x3C;/card>  
+        `;
+    }
+    
+}
+
+ComponentsFactory.bootstrap(AppComponent);
 </code></pre>
 <blockquote>
-<p>Suivez le guide d'initialisation de la commande. Elle va créer le fichier <code>package.json</code> avec les informations du projet.</p>
+<p>Cette exemple va intercepter tous les éléments <code>card</code> et créer une nouvelle instance de <code>CardComponent</code>.</p>
 </blockquote>
-<h3>Installation des modules</h3>
-<p>Maintenant nous allons installer les modules nécessaires à un projet TypeScript.</p>
-<p>Toujours dans le terminal lancez la commande suivante :</p>
-<pre><code>npm install -g typescript@2.0 
-npm install --save @types/jquery materialize-css
-npm install --save-dev connect-history-api-fallback http-proxy-middleware lite-server
-tsc --init
-</code></pre>
-<blockquote>
-<p>Nous travaillerons de préférence avec la version 2.0 de TypeScript</p>
-</blockquote>
-<p>La commande <code>tsc --init</code> va créer un nouveau fichier <code>tsconfig.json</code>. Ce fichier contient les informations nécessaire
-au compilateur TypeScript pour compiler nos fichiers sources.</p>
-<p>En l'état, il nous manque quelques options de compilation dans le <code>tsconfig.json</code>.</p>
-<p>Voici les options à reporter dans votre <code>tsconfig.json</code>: </p>
-<pre><code class="json">{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "noImplicitAny": false,
-    "lib": [
-      "es6",
-      "dom",
-      "es2015.collection"
-    ],
-    "types": [
-      "jquery"
-    ],
-    "experimentalDecorators":true,
-    "emitDecoratorMetadata": true,
-    "sourceMap": true,
-    "declaration": false
-  },
-  "exclude": ["node_modules"]
+<h3>Création du ComponentsFactory</h3>
+<p>Dans le dossier <code>services</code> nous allons créer un nouveau fichier <code>ComponentsFactory.ts</code>.</p>
+<p>Voici une partie de l'implémentation de la factory :</p>
+<pre><code class="typescript">module app.services {
+
+    export class ComponentsFactory {
+        private static components = new Map&#x3C;string | any, any | string>();
+
+        /**
+         * Add a new component in registry.
+         */
+        static add(selector: string, target: any, childrens: any[] = []) {
+
+            target.$childrens = childrens;
+
+            this.components.set(selector, target);
+            this.components.set(target, selector);
+        }
+
+    }
 }
 </code></pre>
+<h3>Création du décorateur</h3>
+<p>Maintenant nous allons développer le décorateur de classe pour collecter les classes auxquelles il sera associé.</p>
+<p>À partir de l'exemple donné dans le cours, créez le décorateur ! Ce décorateur aura deux paramètres :</p>
+<ul>
+<li>selector : le selecteur css associé à la classe composant,</li>
+<li>dependencies : Aggregateur contenant la liste des composants utilisés par la classe en court.</li>
+</ul>
+<h2>Modification de l'application</h2>
+<p>Une fois votre décorateur réalisé, nous allons l'utiliser sur la classe <code>CardComponent</code> et <code>AppComponent</code>.
+Ajoutez donc votre décorateur <code>@component</code> comme présenté dans le premier exemple et vérifiez que le décorateur fonctionne.</p>
 <blockquote>
-<p>Votre projet est prêt pour compiler du TypeScript</p>
+<p>Si vous souhaitez tester votre décorateur, vous pouvez ajouter un console.log() pour voir si votre composant est bien collecté.</p>
 </blockquote>
-<h3>Création du serveur de développement</h3>
-<p>Nous allons maintenant mettre en place le serveur de développement.</p>
-<p>A la racine de projet, créer le fichier bs-config.js et collez le script suivant :</p>
-<pre><code class="javascript">var proxyMiddleware = require('http-proxy-middleware');
-var fallbackMiddleware = require('connect-history-api-fallback');
+<p>A se stade, nous n'avons implémenté qu'une partie de la logique. Le décorateur fait ce qu'on lui demande, mais il fait
+développer un peu notre <code>ComponentsFactory</code> pour qu'il gère complétement le cycle de vie de nos composants.</p>
+<p>Nous allons commencer par simplifier nos composants et déléguer un maximum de traitement vers la classe <code>Component</code> et <code>ComponentsFactory</code>.</p>
+<h3>Utilisation de classe abstraite</h3>
+<p>L'utilisation de classe de abstraite permet de fournir une classe de base contenant un certain nombre de fonctionnalité commune à un type
+de classe, ici les composants.</p>
+<p>Voici les possibilités d'une classe abstraite :</p>
+<ul>
+<li>Ne peut être instancié directement. Elle doit donc être étendu (héritage).</li>
+<li>Elle contient des attributs et méthodes avec implémentation.</li>
+<li>Elle peut définir des méthodes abstraites. Ainsi une méthode abstraite doit obligatoirement être implémenté dans la classe fille.</li>
+</ul>
+<p>Nous allons donc implémenter cette classe ensemble ! Elle aura pour objectifs :</p>
+<ul>
+<li>De construire l'élément jQuery,</li>
+<li>Exposer des accesseurs à l'élément jQuery et aux attributs de l'élément,</li>
+<li>Stocker le contenu d'origine de la balise,</li>
+<li>De définir une méthode abstraite <code>render()</code>.</li>
+</ul>
+<p>Maintenant que notre classe abstraite est défini nous pourrons l'utiliser comme dans l'exemple suivant :</p>
+<pre><code class="typescript">@component('card')
+export class CardComponent extends Component {
+   
+    render() {
+        return "Hello card";
+    }
+}
+</code></pre>
+<h3>Finalisation de ComponentsFactory</h3>
+<p>Nous allons maintenant agrémenter la classe ComponentsFactory afin de gérer le cycle de vie suivant :</p>
+<ul>
+<li>Initialisation du premier composant,</li>
+<li>Rendu du composant et des composants utilisés par le composant,</li>
+<li>Rappel après création du rendu du composant en cours.</li>
+</ul>
+<h4>Initialisation du premier composant</h4>
+<p>Pour gérer l'initialisation du premier composant nous allons rajouter ceci :</p>
+<pre><code class="typescript">module app.services {
 
-module.exports = {
-    "port": 8000,
-    "files": [
-        "./webapp/**/*.{html,htm,css,js}",
-        "./node_modules/**/*.{html,htm,css,js}"
-    ],
-    "server": {
-        "baseDir": "webapp",
-        "routes": {
-            "/node_modules": "node_modules"
-        },
+    export class ComponentsFactory {
 
-        middleware: {
-            1: proxyMiddleware('/api', {
-                target: 'http://futurlogement5.azurewebsites.net',
-                changeOrigin: true   // for vhosted sites, changes host header to match to target's host
-            }),
+        static boostrap(cmpClazz: any) {
 
-            2: fallbackMiddleware({
-                index: '/index.html',
-                verbose: true
-            })
+            jQuery(document).ready(() => {
+                this.render(cmpClazz);
+            });
+
+        }
+
+    }
+}
+</code></pre>
+<h3>Implémentation de la méthode render()</h3>
+<p>Cette méthode prend la classe d'un composant (<code>Card</code> par exemple) et recherche dans le DOM tous les élements correspondant
+au selecteur que nous avons collecté avec le décorateur <code>@component()</code>.</p>
+<pre><code class="typescript">module app.services {
+
+    export class ComponentsFactory {
+    
+        static render(cmpClazz: any) {
+
+            const selector: string = this.components.get(cmpClazz) as string;
+
+            this.fromSelector(selector, cmpClazz)
+                .forEach(cmp => cmp.render());
+
         }
     }
-};
-</code></pre>
-<p>Ensuite il vous faut éditer le <code>package.json</code> et ajouter ceci :</p>
-<pre><code>{
-  "scripts": {
-     "serve": "lite-server"
-  }
 }
 </code></pre>
-<blockquote>
-<p><code>scripts</code> permet d'ajouter de nouvelle commande NPM qui peuvent être appelées en ligne de commande avec <code>npm run [nom cmd]</code>.</p>
-</blockquote>
-<p>Notre serveur de développement est prêt. Il nous reste plus qu'à créer un dossier <code>webapp</code> avec une première page <code>index.html</code>.</p>
-<h3>Création de l'application web</h3>
-<p>Voici à quoi la page d'index doit ressembler :</p>
-<pre><code class="html">&#x3C;!DOCTYPE html>
-&#x3C;html lang="en">
-&#x3C;head>
-    &#x3C;title>TP&#x3C;/title>
-    &#x3C;!--Import Google Icon Font-->
-    &#x3C;link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    &#x3C;!--Import materialize.css-->
-    &#x3C;link type="text/css" rel="stylesheet" href="node_modules/materialize-css/bin/materialize.css"  media="screen,projection"/>
+<h3>Implémentation de la méthode fromSelector()</h3>
+<pre><code class="typescript">module app.services {
 
-    &#x3C;!--Let browser know website is optimized for mobile-->
-    &#x3C;meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-&#x3C;/head>
-&#x3C;body>
+    export class ComponentsFactory {
+        static fromSelector(selector: string, componentClazz: any) {
 
-    &#x3C;app>
+            const elements = jQuery(selector);
+            const cmps = [];
 
-    &#x3C;/app>
+            elements.each((index, element: Element) => {
 
-    &#x3C;!-- vendor -->
-    &#x3C;script type="text/javascript" src="node_modules/materialize-css/bin/jquery-2.1.1.min.js">&#x3C;/script>
-    &#x3C;script type="text/javascript" src="node_modules/materialize-css/bin/materialize.js">&#x3C;/script>
-    &#x3C;!-- end vendor -->
+                const cmp = new componentClazz(element);
 
-    &#x3C;script type="text/javascript" src="scripts/app.js">&#x3C;/script>
-&#x3C;/body>
-&#x3C;/html>
+                cmps.push(cmp);
+
+                if (cmp.onInit) {
+                    cmp.onInit();
+                }
+
+                cmp.$render = cmp.render;
+
+                cmp.render = function() {
+                    this.element.html(this.$render());
+
+                    componentClazz.$childrens.forEach(childrenClazz => {
+
+                        ComponentsFactory.render(childrenClazz);
+
+                    });
+
+                    if (this.afterRender) {
+                        this.afterRender();
+                    }
+                };
+            });
+
+            return cmps;
+        }
+    }
+}
 </code></pre>
-<p>Ici il nous manque le script <code>app.js</code>. Notez que dans la page d'index nous incluerons toujours le fichier javascript généré par TypeScript et non
-le fichier <code>app.ts</code>. </p>
-<p>Dans le dossier <code>scripts</code>, créer un nouveau fichier <code>app.ts</code>.</p>
-<p>L'exercice sera d'intercepter la balise <code>app</code> et d'y afficher un <code>HELLO WORLD</code> avec jQuery.</p>
+<p>Maintenant notre <code>ComponentsFactory</code> est prête il nous reste plus qu'à adapter notre application !</p>
 <blockquote>
-<p>Note : pour lancer votre server <code>npm run serve</code>.</p>
-<p>Note 2 : pour compiler votre fichier TypeScript <code>tsc</code>.</p>
-<p>Correction du TP : <a href="../../Resources/tp1-installation.zip">tp1-installation</a></p>
+<p>Correction du TP  : <a href="resources/tp4-solution.zip">tp4-solution</a></p>
 </blockquote>
-<p><a href="tp2-composant.html">Suivant</a></p>
+<p><a href="tp5-composant-recherche.html">Suivant</a></p>
 
     </article>
 </div>

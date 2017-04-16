@@ -1,15 +1,10 @@
 {
-
   "pageTitle": "Labs TypeScript",
   "repository": "https://github.com/NodeAndTyped/labs-typescript/",
+  "pdfName": "labs.pdf",
   "branch": "master",
 
-  "copy": [
-    {"from": "${baseDir}/src", "to": "src"}
-  ],
-
   "checkout": {
-    "cwd": "../../Resources",
     "branchs": [
       "tp1-installation",
       "tp2-solution",
@@ -20,24 +15,47 @@
     ]
   },
 
-  "pdfName": "labs.pdf",
-
-  "outDir": [
-    {"format": "html",  "path": "Instructor/html"},
-    {"format": "pdf",  "path": "Instructor/pdf"},
-    {"format": "html",  "path": "Student/html"},
-    {"format": "pdf",  "path": "Student/pdf"}
-  ],
-
   "concat": {
     "files": [
-      {"title": "Accueil", "path": "readme.md"},
-      {"title": "TP1 - Installation", "path": "tp1-installation.md"},
-      {"title": "TP2 - Création d'un composant", "path": "tp2-composant.md"},
-      {"title": "TP3 - Création d'un service et appel d'un webservice", "path": "tp3-service.md"},
-      {"title": "TP4 - Création d'un décorateur", "path": "tp4-decorator.md"},
-      {"title": "TP5 - Rechercher une annonce", "path": "tp5-composant-recherche.md"},
-      {"title": "TP6 - Consultation d'une annonce", "path": "tp6-consultation.md"}
+      {"title": "Accueil", "cwd":"${root}/src", "path": "index.md"},
+      {"title": "TP1 - Installation", "cwd":"${root}/src", "path": "tp1-installation.md"},
+      {"title": "TP2 - Création d'un composant", "cwd":"${root}/src", "path": "tp2-composant.md"},
+      {"title": "TP3 - Création d'un service et appel d'un webservice", "cwd":"${root}/src", "path": "tp3-service.md"},
+      {"title": "TP4 - Création d'un décorateur", "cwd":"${root}/src", "path": "tp4-decorator.md"},
+      {"title": "TP5 - Rechercher une annonce", "cwd":"${root}/src", "path": "tp5-composant-recherche.md"},
+      {"title": "TP6 - Consultation d'une annonce", "cwd":"${root}/src", "path": "tp6-consultation.md"}
     ]
-  }
+  },
+
+  "copy": [
+    {"from": "${root}/src/images", "to": "images"}
+  ],
+
+  "outDir": [
+    {
+      "format": "html",
+      "path": "${root}/dist/Instructor/html",
+      "resources": "${root}/dist/Resources"
+    },
+    {
+      "format": "pdf",
+      "path": "${root}/dist/Instructor/pdf",
+      "resources": "${root}/dist/Resources"
+    },
+    {
+      "format": "ebook",
+      "path": "${root}/dist/Student/ebook",
+      "resources": "${root}/dist/Resources"
+    },
+    {
+      "format": "pdf",
+      "path": "${root}/dist/Student/pdf",
+      "resources": "${root}/dist/Resources"
+    },
+    {
+      "format": "html",
+      "path": "${root}/docs",
+      "resources": "${root}/docs/resources"
+    }
+  ]
 }

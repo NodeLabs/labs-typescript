@@ -63,3 +63,5 @@ typings/
 tools/**/*.js
 tools/**/*.js.map
 !tools/models/scripts/*.js
+/index.js
+/index.js.map
