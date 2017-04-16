@@ -3,7 +3,7 @@
 
 ## Prérequis
 
-Vérifier que vous avez les éléments suivants d’installé sur votre poste :
+Vérifiez que vous avez les éléments suivants d’installés sur votre poste :
 
 * Node v6 ou plus avec la commande npm –v,
 * Git, nous l’utiliserons pour récupérer le projet initial,
@@ -27,13 +27,11 @@ Maintenant nous allons installer les modules nécessaires à un projet TypeScrip
 Toujours dans le terminal lancez la commande suivante :
 
 ```
-npm install -g typescript@2.0 
+npm install -g typescript@2
 npm install --save @types/jquery materialize-css
 npm install --save-dev connect-history-api-fallback http-proxy-middleware lite-server
 tsc --init
 ```
-
-> Nous travaillerons de préférence avec la version 2.0 de TypeScript
 
 La commande `tsc --init` va créer un nouveau fichier `tsconfig.json`. Ce fichier contient les informations nécessaire 
 au compilateur TypeScript pour compiler nos fichiers sources.
@@ -53,9 +51,7 @@ Voici les options à reporter dans votre `tsconfig.json`:
       "dom",
       "es2015.collection"
     ],
-    "types": [
-      "jquery"
-    ],
+    "typeRoots": "./node_modules/@types",
     "experimentalDecorators":true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,

@@ -208,7 +208,7 @@ préexistante telles que jQuery, Materialize-css, fetch ou lodash.</p>
 <p>Installation de l'environnement</p>
 </blockquote>
 <h2>Prérequis</h2>
-<p>Vérifier que vous avez les éléments suivants d’installé sur votre poste :</p>
+<p>Vérifiez que vous avez les éléments suivants d’installés sur votre poste :</p>
 <ul>
 <li>Node v6 ou plus avec la commande npm –v,</li>
 <li>Git, nous l’utiliserons pour récupérer le projet initial,</li>
@@ -225,14 +225,11 @@ préexistante telles que jQuery, Materialize-css, fetch ou lodash.</p>
 <h3>Installation des modules</h3>
 <p>Maintenant nous allons installer les modules nécessaires à un projet TypeScript.</p>
 <p>Toujours dans le terminal lancez la commande suivante :</p>
-<pre><code>npm install -g typescript@2.0 
+<pre><code>npm install -g typescript@2
 npm install --save @types/jquery materialize-css
 npm install --save-dev connect-history-api-fallback http-proxy-middleware lite-server
 tsc --init
 </code></pre>
-<blockquote>
-<p>Nous travaillerons de préférence avec la version 2.0 de TypeScript</p>
-</blockquote>
 <p>La commande <code>tsc --init</code> va créer un nouveau fichier <code>tsconfig.json</code>. Ce fichier contient les informations nécessaire
 au compilateur TypeScript pour compiler nos fichiers sources.</p>
 <p>En l'état, il nous manque quelques options de compilation dans le <code>tsconfig.json</code>.</p>
@@ -247,9 +244,7 @@ au compilateur TypeScript pour compiler nos fichiers sources.</p>
       "dom",
       "es2015.collection"
     ],
-    "types": [
-      "jquery"
-    ],
+    "typeRoots": "./node_modules/@types",
     "experimentalDecorators":true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
