@@ -1,4 +1,5 @@
-# TP 4 - Les décorateurs
+# TP 4 
+> Les décorateurs
 
 L'idée est de déléguer la création de composant à un factory que l'on nommera `ComponentsFactory`.
 

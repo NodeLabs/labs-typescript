@@ -1,4 +1,5 @@
-# TP 2 - Création d'un composant
+# TP 2 
+> Création d'un composant
 
 Notre exercice sera de créer un premier composant `card` basé sur le framework CSS materialize-css ([documentation](http://materializecss.com/cards.html)).
 
