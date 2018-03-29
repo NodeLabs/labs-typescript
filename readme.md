@@ -1,6 +1,6 @@
 # Labs TypeScript
 
-Voir l'ensemble du cours sur [http://NodeAndTyped.github.io/labs-typescript](http://NodeAndTyped.github.io/labs-typescript).
+Voir l'ensemble du cours sur [http://NodeLabs.github.io/labs-typescript](http://NodeLabs.github.io/labs-typescript).
 
 # Mise à jour du contenu
 
